@@ -10,8 +10,19 @@ import io
 load_dotenv()
 
 # Configure API key
-genai.configure(api_key= os.getenv("GOOGLE_API_KEY", st.secrets.get("GOOGLE_API_KEY"))
-)
+
+# Load from Streamlit secrets if available, otherwise .env
+try:
+    api_key = st.secrets["GOOGLE_API_KEY"]
+except Exception:
+    load_dotenv()
+    api_key = os.getenv("GOOGLE_API_KEY")
+
+if not api_key:
+    st.error("No API key found. Please set GOOGLE_API_KEY in Streamlit Secrets or .env file.")
+else:
+    genai.configure(api_key=api_key)
+
 
 # Initialize Gemini model
 model = genai.GenerativeModel('gemini-2.0-flash')
