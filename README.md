@@ -37,15 +37,18 @@
 ```bash
 git clone https://github.com/your-username/cursor-mini.git
 cd cursor-mini
+```
+
 
 ### 2️⃣ Install required dependencies
 ```bash
 pip install -r requirements.txt
+```
 
 ### 3️⃣ Run Locally
 ```bash
 streamlit run app.py
-
+```
 
 
 
